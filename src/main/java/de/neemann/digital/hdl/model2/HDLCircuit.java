@@ -129,8 +129,7 @@ public class HDLCircuit implements Iterable<HDLNode>, HDLModel.BitProvider, Prin
                         port.setIsInOut();
                     addOutput(port);
 
-                }
-                else if (v.equalsDescription(Splitter.DESCRIPTION))
+                } else if (v.equalsDescription(Splitter.DESCRIPTION))
                     handleSplitter(c.createNode(v, this));
                 else if (isRealElement(v))
                     nodes.add(c.createNode(v, this));

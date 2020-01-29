@@ -6,7 +6,7 @@ import de.neemann.digital.core.element.Key;
 /**
  * Define the key constants for plugin
  */
-public class PluginKeys {
+public final class PluginKeys {
     private PluginKeys() {}
 
     /**
