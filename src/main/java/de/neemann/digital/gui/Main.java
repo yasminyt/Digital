@@ -60,7 +60,6 @@ import de.neemann.digital.toolchain.Configuration;
 import de.neemann.digital.undo.ChangedListener;
 import de.neemann.digital.undo.Modifications;
 import de.neemann.gui.*;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,22 +70,23 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.JarURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import static de.neemann.digital.draw.shapes.GenericShape.SIZE;
 import static de.neemann.gui.ToolTipAction.getCTRLMask;
@@ -258,12 +258,10 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    URL url = this.getClass().getClassLoader().getResource("testbench");
-                    Path src = Paths.get(Objects.requireNonNull(url).toURI());
-                    Path target = Paths.get(System.getProperty("java.io.tmpdir"), "digital");
-                    FileUtils.copyDirectory(src.toFile(), target.toFile());
+                    Path target = Paths.get("java.io.tmpdir");
+                    loadRecourseFromJarByFolder("/testbench", target.toFile().getAbsolutePath());
                     target.toFile().deleteOnExit();
-                    URI uri = target.resolve("index.html").toUri();
+                    URI uri = target.resolve("testbench/index.html").toUri();
                     Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
                     if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE))
                         desktop.browse(uri);
@@ -331,6 +329,109 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             setLocationRelativeTo(null);
 
         checkIDEIntegration(builder, menuBar);
+    }
+
+    private void loadRecourseFromJarByFolder(String folderPath, String resourceFolder) throws IOException {
+        URL url = getClass().getResource(folderPath);
+        URLConnection urlConnection = url.openConnection();
+        if (urlConnection instanceof JarURLConnection)
+            copyJarResources((JarURLConnection) urlConnection, resourceFolder);
+        else
+            copyFileResources(url, folderPath, resourceFolder);
+    }
+
+    /**
+     * 当前运行环境资源文件是在文件里面的
+     * @param url               url
+     * @param folderPath        folderPath
+     * @param resourceFolder    resourceFolder
+     * @throws IOException      throws exception
+     */
+    private void copyFileResources(URL url, String folderPath, String resourceFolder) throws IOException {
+        File root = new File(url.getPath());
+        if (root.isDirectory()) {
+            File[] files = root.listFiles();
+            for (File file : files) {
+                if (file.isDirectory())
+                    loadRecourseFromJarByFolder(folderPath + "/" + file.getName(), resourceFolder);
+                else
+                    loadRecourseFromJar(folderPath + "/" + file.getName(), resourceFolder);
+            }
+        }
+    }
+
+    private void loadRecourseFromJar(String path, String resourceFolder) throws IOException {
+        if (!path.startsWith("/")) {
+            throw new IllegalArgumentException("The path has to be absolute (start with '/').");
+        }
+
+        if (path.endsWith("/")){
+            throw new IllegalArgumentException("The path has to be absolute (cat not end with '/').");
+        }
+
+        int index = path.lastIndexOf('/');
+
+        String filename = path.substring(index + 1);
+        String folderPath = resourceFolder + path.substring(0, index + 1);
+
+        // If the folder does not exist yet, it will be created. If the folder
+        // exists already, it will be ignored
+        File dir = new File(folderPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // If the file does not exist yet, it will be created. If the file
+        // exists already, it will be ignored
+        filename = folderPath + filename;
+        File file = new File(filename);
+
+        if (!file.exists() && !file.createNewFile()) {
+            return;
+        }
+
+        // Prepare buffer for data copying
+        byte[] buffer = new byte[1024];
+        int readBytes;
+
+        // Open and check input stream
+        URL url = getClass().getResource(path);
+        URLConnection urlConnection = url.openConnection();
+        InputStream is = urlConnection.getInputStream();
+
+        if (is == null) {
+            throw new FileNotFoundException("File " + path + " was not found inside JAR.");
+        }
+
+        // Open output stream and copy data between source file in JAR and the
+        // temporary file
+        OutputStream os = new FileOutputStream(file);
+        try {
+            while ((readBytes = is.read(buffer)) != -1) {
+                os.write(buffer, 0, readBytes);
+            }
+        } finally {
+            // If read/write fails, close streams safely before throwing an
+            // exception
+            os.close();
+            is.close();
+        }
+    }
+
+    /**
+     * 当前运行环境资源环境是在 jar 里面
+     * @param jarURLConnection  jarURLConnection
+     * @param resourceFolder    resourceFolder
+     */
+    private void copyJarResources(JarURLConnection jarURLConnection, String resourceFolder) throws IOException {
+        JarFile jarFile = jarURLConnection.getJarFile();
+        Enumeration<JarEntry> entries = jarFile.entries();
+        while (entries.hasMoreElements()) {
+            JarEntry entry = entries.nextElement();
+            if (entry.getName().startsWith(jarURLConnection.getEntryName()) && !entry.getName().endsWith("/"))
+                loadRecourseFromJar("/" + entry.getName(), resourceFolder);
+        }
+        jarFile.close();
     }
 
     private void checkIDEIntegration(MainBuilder builder, JMenuBar menuBar) {
