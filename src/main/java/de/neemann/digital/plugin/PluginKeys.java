@@ -48,8 +48,4 @@ public class PluginKeys {
     public static final Key<IntFormat> INT_FORMAT
             = new Key.KeyEnum<>("intFormat", IntFormat.def, IntFormat.values())
             .setSecondary();
-
-    /*
-     * todo: PLL
-     */
 }
