@@ -228,7 +228,8 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                                 .add(LRamDQ.DESCRIPTION)
                                 .add(LRom.DESCRIPTION)
                                 .add(LRamDP.DESCRIPTION)
-                                .add(RegsFile.DESCRIPTION)));       // todo: PLL
+                                .add(RegsFile.DESCRIPTION)
+                                .add(PLL.DESCRIPTION)));
 
         addExternalJarComponents(jarFile);
 
