@@ -33,6 +33,11 @@ public class PLL extends Node implements Element {
 
     private long outValue;
 
+    /**
+     * Creates a new instance
+     *
+     * @param attributes the elements attributes
+     */
     public PLL(ElementAttributes attributes) {
         label = attributes.getLabel();
         clkOp = new ObservableValue("CLKOP", 1).setPinDescription(DESCRIPTION);
@@ -58,6 +63,9 @@ public class PLL extends Node implements Element {
         return this.clkOp.asList();
     }
 
+    /**
+     * @return label
+     */
     public String getLabel() {
         return label;
     }
