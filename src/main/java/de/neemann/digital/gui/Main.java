@@ -60,6 +60,7 @@ import de.neemann.digital.toolchain.Configuration;
 import de.neemann.digital.undo.ChangedListener;
 import de.neemann.digital.undo.Modifications;
 import de.neemann.gui.*;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -148,6 +149,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
 
     private File baseFilename;
     private File filename;
+    private File rarsTempFile;
     private FileHistory fileHistory;
     private boolean modifiedPrefixVisible = false;
 
@@ -189,6 +191,18 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         fileHistory = new FileHistory(this);
 
         baseFilename = builder.baseFileName;
+
+        try {
+            rarsTempFile = File.createTempFile("rars", ".jar");
+            rarsTempFile.deleteOnExit();
+            try (FileOutputStream out = new FileOutputStream(rarsTempFile);
+                InputStream in = ClassLoader.getSystemResourceAsStream("rars1_3_1.jar")) {
+                if (in != null)
+                    IOUtils.copy(in, out);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         circuitComponent = new CircuitComponent(this, library, shapeFactory);
         circuitComponent.addListener(this);
@@ -238,6 +252,8 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         createStartMenu(menuBar, toolBar);
 
         createAnalyseMenu(menuBar);
+
+        createAssembly(menuBar);
 
         toolBar.addSeparator();
 
@@ -1370,6 +1386,30 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
         }
                 .setToolTip(Lang.get("menu_fsm_tt"))
                 .createJMenuItem());
+    }
+
+    /**
+     * Creates the assembly menu
+     *
+     * @param menuBar the menu bar
+     */
+    private void createAssembly(JMenuBar menuBar) {
+        JMenu assembly = new JMenu(Lang.get("menu_assembly"));
+        menuBar.add(assembly);
+        assembly.add(new ToolTipAction("RARS") {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    String cmd = "java -jar " + rarsTempFile.getAbsolutePath();
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+                .setToolTip(Lang.get("menu_RARS_tt"))
+                .createJMenuItem());
+
     }
 
     private void orderMeasurements() {
