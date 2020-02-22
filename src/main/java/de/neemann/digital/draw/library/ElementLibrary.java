@@ -222,14 +222,15 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                         .add(Break.DESCRIPTION)
                         .add(AsyncSeq.DESCRIPTION)
                         .add(External.DESCRIPTION))
-                .add(new LibraryNode(Lang.get("lib_lattice"))
+                .add(new LibraryNode(Lang.get("lib_ip"))
+                        .add(new LibraryNode(Lang.get("lib_lattice"))
                         .add(new LibraryNode(Lang.get("lib_machXO2"))
                                 .add(LRamDPTrue.DESCRIPTION)
                                 .add(LRamDQ.DESCRIPTION)
                                 .add(LRom.DESCRIPTION)
                                 .add(LRamDP.DESCRIPTION)
-                                .add(RegsFile.DESCRIPTION)
-                                .add(PLL.DESCRIPTION)));
+//                                .add(RegsFile.DESCRIPTION)
+                                .add(PLL.DESCRIPTION))));
 
         addExternalJarComponents(jarFile);
 

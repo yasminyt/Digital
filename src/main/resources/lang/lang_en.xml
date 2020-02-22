@@ -1457,6 +1457,7 @@
     <string name="lib_more">more</string>
     <string name="lib_ram">RAM</string>
     <string name="lib_eeprom">EEPROM</string>
+    <string name="lib_ip">IP-Core</string>
     <string name="lib_lattice">Lattice</string>
     <string name="lib_machXO2">MachXO2</string>
 
