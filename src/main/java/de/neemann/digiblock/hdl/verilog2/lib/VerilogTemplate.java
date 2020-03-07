@@ -72,7 +72,7 @@ public class VerilogTemplate implements VerilogElement {
         Module m = getModule(node);
 
         if (!m.isWritten) {
-            out.println(m.code);
+            out.println(m.code.trim());
             m.setWritten();
         }
 
