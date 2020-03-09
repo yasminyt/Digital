@@ -7,6 +7,7 @@
 module <?= moduleName ?> #(
 parameter Bits = 4,
 parameter shiftBits=3
+)
 (
     input [(Bits-1):0] in,
     input [(shiftBits-1):0] shift,
