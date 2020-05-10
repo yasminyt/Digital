@@ -1494,7 +1494,7 @@
     <string name="menu_fast_tt">Runs the circuit until a break is detected by a BRK component.</string>
     <string name="menu_file">File</string>
     <string name="menu_testBench">TestBench</string>
-    <string name="menu_testBench_create">BlockTB</string>
+    <string name="menu_testBench_create">blocklyTB</string>
     <string name="menu_testBench_create_tt">Create testbench in browser.</string>
     <string name="menu_help">Help</string>
     <string name="menu_update">Update</string>
