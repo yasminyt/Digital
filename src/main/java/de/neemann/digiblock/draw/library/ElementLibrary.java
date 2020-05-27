@@ -123,7 +123,6 @@ public class ElementLibrary implements Iterable<ElementLibrary.ElementContainer>
                         .add(LookUpTable.DESCRIPTION))
                 .add(new LibraryNode(Lang.get("lib_io"))
                         .add(Out.DESCRIPTION)
-//                        .add(Out.INOUTDESCRIPTION)
                         .add(Out.LEDDESCRIPTION)
                         .add(In.DESCRIPTION)
                         .add(Clock.DESCRIPTION)

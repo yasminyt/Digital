@@ -47,8 +47,6 @@ public class HDLPort implements Printable, HasName {
     private String pinNumber;
     private HDLNode parent;
 
-    private boolean isInOut;
-
     /**
      * Creates a new instance
      *
@@ -225,20 +223,6 @@ public class HDLPort implements Printable, HasName {
      */
     public void setInOut() {
         direction = Direction.INOUT;
-    }
-
-    /**
-     * Sets the InOut flag
-     */
-    public void setIsInOut() {
-        isInOut = true;
-    }
-
-    /**
-     * @return true if this is InOut
-     */
-    public boolean isInOut() {
-        return isInOut;
     }
 
 }
