@@ -70,9 +70,8 @@ public class OutputShape implements Shape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         this.ioState = ioState;
-        ioState.getInput(0).addObserverToValue(guiObserver);
         return null;
     }
 

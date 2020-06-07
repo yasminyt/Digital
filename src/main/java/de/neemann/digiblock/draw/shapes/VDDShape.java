@@ -20,11 +20,12 @@ import static de.neemann.digiblock.draw.shapes.GenericShape.SIZE;
 import static de.neemann.digiblock.draw.shapes.GenericShape.SIZE2;
 
 /**
- * The Vcc shape
+ * The VDD shape
  */
 public class VDDShape implements Shape {
     static final int DOWNSHIFT = 4;
     private final PinDescriptions outputs;
+    private final String label;
 
     /**
      * Creates a new instance
@@ -35,6 +36,7 @@ public class VDDShape implements Shape {
      */
     public VDDShape(ElementAttributes attr, PinDescriptions inputs, PinDescriptions outputs) {
         this.outputs = outputs;
+        label = attr.getLabel();
     }
 
     @Override
@@ -43,7 +45,7 @@ public class VDDShape implements Shape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         return null;
     }
 
@@ -55,5 +57,7 @@ public class VDDShape implements Shape {
                         .add(0, DOWNSHIFT - SIZE * 2 / 3)
                         .add(SIZE2, DOWNSHIFT), Style.NORMAL);
         graphic.drawLine(new Vector(0, -SIZE2 + DOWNSHIFT), new Vector(0, 0), Style.NORMAL);
+        if (!label.isEmpty())
+            graphic.drawText(new Vector(0, DOWNSHIFT - SIZE * 2 / 3 - SIZE2), label, Orientation.CENTERBOTTOM, Style.SHAPE_PIN);
     }
 }

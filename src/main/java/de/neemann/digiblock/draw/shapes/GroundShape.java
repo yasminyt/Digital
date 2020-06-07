@@ -23,6 +23,7 @@ import static de.neemann.digiblock.draw.shapes.GenericShape.SIZE2;
 public class GroundShape implements Shape {
 
     private final PinDescriptions outputs;
+    private final String label;
 
     /**
      * Creates a new instance
@@ -33,6 +34,7 @@ public class GroundShape implements Shape {
      */
     public GroundShape(ElementAttributes attr, PinDescriptions inputs, PinDescriptions outputs) {
         this.outputs = outputs;
+        label = attr.getLabel();
     }
 
     @Override
@@ -41,12 +43,14 @@ public class GroundShape implements Shape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         return null;
     }
 
     @Override
     public void drawTo(Graphic graphic, Style heighLight) {
         graphic.drawLine(new Vector(-SIZE2, 0), new Vector(SIZE2, 0), Style.THICK);
+        if (!label.isEmpty())
+            graphic.drawText(new Vector(0, SIZE2), label, Orientation.CENTERTOP, Style.SHAPE_PIN);
     }
 }

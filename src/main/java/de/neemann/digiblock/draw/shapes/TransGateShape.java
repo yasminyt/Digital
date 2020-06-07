@@ -65,7 +65,7 @@ public class TransGateShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         transGate = (TransGate) ioState.getElement();
         return null;
     }

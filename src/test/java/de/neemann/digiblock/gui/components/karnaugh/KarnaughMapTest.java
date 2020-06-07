@@ -86,7 +86,7 @@ public class KarnaughMapTest extends TestCase {
 
     // in 4x4 map a 8 cell block is drawn in wrong orientation
     public void testBUG_1() throws IOException, ParseException, KarnaughException {
-        Expression exp = new Variable("D");
+        Expression exp = Not.not(new Variable("D"));
         KarnaughMap c = new KarnaughMap(Variable.vars(4), exp);
 
         assertEquals(1, c.size());
@@ -96,7 +96,7 @@ public class KarnaughMapTest extends TestCase {
         assertFalse(co.onlyEdges());
         assertTrue(co.isVerticalDivided());
 
-        exp = new Variable("B");
+        exp = Not.not(new Variable("B"));
         c = new KarnaughMap(Variable.vars(4), exp);
 
         assertEquals(1, c.size());

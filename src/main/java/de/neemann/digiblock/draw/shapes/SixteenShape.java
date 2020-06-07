@@ -80,9 +80,9 @@ public class SixteenShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
-        input = ioState.getInput(0).addObserverToValue(guiObserver);
-        dp = ioState.getInput(1).addObserverToValue(guiObserver);
+    public InteractorInterface applyStateMonitor(IOState ioState) {
+        input = ioState.getInput(0);
+        dp = ioState.getInput(1);
         return null;
     }
 

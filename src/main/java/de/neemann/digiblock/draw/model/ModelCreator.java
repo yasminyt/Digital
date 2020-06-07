@@ -296,13 +296,10 @@ public class ModelCreator implements Iterable<ModelEntry> {
     /**
      * Needs to be called after createModel is called!
      * Connects the gui to the model
-     *
-     * @param guiObserver the observer which can be attached to {@link de.neemann.digiblock.core.ObservableValue}s
-     *                    which have a state dependant graphical representation.
      */
-    public void connectToGui(Observer guiObserver) {
+    public void connectToGui() {
         for (ModelEntry e : entries)
-            e.connectToGui(guiObserver);
+            e.connectToGui();
     }
 
     /**

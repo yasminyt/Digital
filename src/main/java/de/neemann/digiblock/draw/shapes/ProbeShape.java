@@ -52,9 +52,8 @@ public class ProbeShape implements Shape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         inValue = ioState.getInput(0);
-        inValue.addObserverToValue(guiObserver);
         return null;
     }
 

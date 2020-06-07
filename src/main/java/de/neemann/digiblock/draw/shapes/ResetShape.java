@@ -45,7 +45,7 @@ public class ResetShape implements Shape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         //ioState.getOutput(0).addObserverToValue(guiObserver);
         return null;
     }

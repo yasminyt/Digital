@@ -66,17 +66,18 @@ public class RAMShape extends GenericShape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         return new Interactor() {
             @Override
-            public boolean clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+            public void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
                 if (element instanceof RAMInterface) {
                     RAMInterface ram = (RAMInterface) element;
                     DataField dataField = ram.getMemory();
                     DataEditor dataEditor = new DataEditor(cc, dataField, dataBits, addrBits, true, modelSync, ram.getIntFormat());
+                    if (element instanceof Node)
+                        dataEditor.setNode((Node) element);
                     dataEditor.showDialog(dialogTitle, model);
                 }
-                return false;
             }
         };
     }

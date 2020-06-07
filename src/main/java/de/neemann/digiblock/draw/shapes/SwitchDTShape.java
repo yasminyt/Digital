@@ -64,15 +64,13 @@ public class SwitchDTShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         return new Interactor() {
             @Override
-            public boolean clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+            public void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
                 closed = !closed;
-                if (ioState != null) {
-                    modelSync.access(() -> ((SwitchDT) element).setClosed(closed));
-                }
-                return true;
+                if (ioState != null)
+                    modelSync.modify(() -> ((SwitchDT) element).setClosed(closed));
             }
         };
     }

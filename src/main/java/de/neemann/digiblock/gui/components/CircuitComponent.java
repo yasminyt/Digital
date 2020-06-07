@@ -62,6 +62,7 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
     private static final ArrayList<Key> ATTR_LIST = new ArrayList<>();
 
     static {
+        ATTR_LIST.add(Keys.LABEL);
         ATTR_LIST.add(Keys.WIDTH);
         ATTR_LIST.add(Keys.SHAPE_TYPE);
         ATTR_LIST.add(Keys.CUSTOM_SHAPE);
@@ -120,7 +121,6 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
 
     private MouseController activeMouseController;
     private AffineTransform transform = new AffineTransform();
-    private Observer manualChangeObserver;
     private Vector lastMousePos;
     private SyncAccess modelSync = SyncAccess.NOSYNC;
     private boolean isManualScale;
@@ -136,6 +136,7 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
     private TutorialListener tutorialListener;
     private boolean toolTipHighlighted = false;
     private NetList toolTipNetList;
+    private String lastUsedTunnelName;
 
     /**
      * Creates a new instance
@@ -675,15 +676,6 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
     }
 
     /**
-     * Sets the observer to call if the user is clicking on elements while running.
-     *
-     * @param callOnManualChange the listener
-     */
-    public void setManualChangeObserver(Observer callOnManualChange) {
-        this.manualChangeObserver = callOnManualChange;
-    }
-
-    /**
      * Sets the edit mode and resets the circuit
      *
      * @param runMode   true if running, false if editing
@@ -791,6 +783,18 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
      * @param element the element to insert
      */
     public void setPartToInsert(VisualElement element) {
+        if (element.equalsDescription(Tunnel.DESCRIPTION)) {
+            if (lastUsedTunnelName != null) {
+                CopiedElementLabelRenamer.LabelInstance li =
+                        CopiedElementLabelRenamer.LabelInstance.
+                                create(Tunnel.DESCRIPTION.getName(), lastUsedTunnelName);
+                if (li != null) {
+                    lastUsedTunnelName = li.getLabel(1);
+                }
+                element.setAttribute(Keys.NETNAME, lastUsedTunnelName);
+            }
+        }
+
         parent.ensureModelIsStopped();
         mouseInsertElement.activate(element);
         Point point = MouseInfo.getPointerInfo().getLocation();
@@ -949,17 +953,6 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
         graphicHasChanged();
         enableUndoRedo();
     }
-
-    /**
-     * forces a immediately repaint
-     * Is called from {@link de.neemann.digiblock.gui.GuiModelObserver} if the models data has changed.
-     * Therefore the double buffer is invalidated.
-     */
-    public void paintImmediately() {
-        graphicHasChangedFlag = true;
-        paintImmediately(0, 0, getWidth(), getHeight());
-    }
-
 
     private Vector getPosVector(MouseEvent e) {
         return getPosVector(e.getX(), e.getY());
@@ -1168,6 +1161,10 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
                     attributeDialog.disableOk();
 
                 ElementAttributes modified = attributeDialog.showDialog();
+                if (elementType == Tunnel.DESCRIPTION) {
+                    if (modified.contains(Keys.NETNAME))
+                        lastUsedTunnelName = modified.get(Keys.NETNAME);
+                }
                 if (modified != null && !locked) {
                     Modification<Circuit> mod = new ModifyAttributes(element, modified);
                     modify(checkNetRename(element, modified, mod));
@@ -2381,7 +2378,7 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
     }
 
     private interface Actor {
-        boolean interact(CircuitComponent cc, Point p, Vector posInComponent, SyncAccess modelSync);
+        void interact(CircuitComponent cc, Point p, Vector posInComponent, SyncAccess modelSync);
     }
 
     private final class MouseControllerRun extends MouseController {
@@ -2395,7 +2392,7 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
         void pressed(MouseEvent e) {
             VisualElement ve = getInteractiveElementAt(e);
             if (ve != null) {
-                interact(e, ve::elementPressed);
+                interact(e, (cc, pos, posInComponent, modelSync1) -> ve.elementPressed(cc, pos, posInComponent, modelSync1));
                 draggedElement = ve;
             } else
                 draggedElement = null;
@@ -2413,7 +2410,7 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
         @Override
         void released(MouseEvent e) {
             if (draggedElement != null) {
-                interact(e, draggedElement::elementReleased);
+                interact(e, (cc, pos, posInComponent, modelSync1) -> draggedElement.elementReleased(cc, pos, posInComponent, modelSync1));
                 draggedElement = null;
             }
         }
@@ -2422,13 +2419,13 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
         void clicked(MouseEvent e) {
             VisualElement ve = getInteractiveElementAt(e);
             if (ve != null)
-                interact(e, ve::elementClicked);
+                interact(e, (cc, pos, posInComponent, modelSync1) -> ve.elementClicked(cc, pos, posInComponent, modelSync1));
         }
 
         @Override
         boolean dragged(MouseEvent e) {
             if (draggedElement != null) {
-                interact(e, draggedElement::elementDragged);
+                interact(e, (cc, pos, posInComponent, modelSync1) -> draggedElement.elementDragged(cc, pos, posInComponent, modelSync1));
                 return true;
             } else
                 return false;
@@ -2437,22 +2434,8 @@ public class CircuitComponent extends JComponent implements ChangedListener, Lib
         private void interact(MouseEvent e, Actor actor) {
             Point p = new Point(e.getX(), e.getY());
             SwingUtilities.convertPointToScreen(p, CircuitComponent.this);
-            boolean modelHasChanged = actor.interact(CircuitComponent.this, p, getPosVector(e), modelSync);
-            if (modelHasChanged) {
-                if (tutorialListener != null)
-                    tutorialListener.modified(null);
-                modelHasChanged();
-            } else
-                graphicHasChanged();
+            actor.interact(CircuitComponent.this, p, getPosVector(e), modelSync);
         }
-    }
-
-    /**
-     * call this method if the model has changed manually
-     */
-    public void modelHasChanged() {
-        if (manualChangeObserver != null)
-            manualChangeObserver.hasChanged();
     }
 
     /**

@@ -60,9 +60,9 @@ public class PolarityAwareLEDShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
-        aValue = ioState.getInput(0).addObserverToValue(guiObserver);
-        cValue = ioState.getInput(1).addObserverToValue(guiObserver);
+    public InteractorInterface applyStateMonitor(IOState ioState) {
+        aValue = ioState.getInput(0);
+        cValue = ioState.getInput(1);
         return null;
     }
 

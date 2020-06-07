@@ -56,10 +56,10 @@ public class ButtonLEDShape extends ButtonShape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         inputValue = ioState.getInput(0);
         button = (ButtonLED) ioState.getElement();
-        return super.applyStateMonitor(ioState, guiObserver);
+        return super.applyStateMonitor(ioState);
     }
 
     @Override

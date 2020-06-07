@@ -65,10 +65,8 @@ public class RelayShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         relay = (Relay) ioState.getElement();
-        ioState.getInput(0).addObserverToValue(guiObserver);
-        ioState.getInput(1).addObserverToValue(guiObserver);
         return null;
     }
 

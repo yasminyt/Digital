@@ -55,6 +55,8 @@ public class SevenSegHexShape extends SevenShape {
         if (i == 7) {
             return dp.getBool();
         } else {
+            if (input.isHighZ())
+                return false;
             int v = (int) input.getValue() & 0xf;
             v = TABLE[v];
             return (v & (1 << i)) != 0;
@@ -72,10 +74,8 @@ public class SevenSegHexShape extends SevenShape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         this.ioState = ioState;
-        ioState.getInput(0).addObserverToValue(guiObserver);
-        ioState.getInput(1).addObserverToValue(guiObserver);
         return null;
     }
 }

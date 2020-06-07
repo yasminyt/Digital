@@ -72,10 +72,8 @@ public class SevenSegShape extends SevenShape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         inputValues = ioState.getInputs();
-        for (ObservableValue o : inputValues)
-            o.addObserverToValue(guiObserver);
         return null;
     }
 

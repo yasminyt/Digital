@@ -49,9 +49,8 @@ public abstract class FETShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         fet = (NFET) ioState.getElement();
-        ioState.getInput(0).addObserverToValue(guiObserver);
         return null;
     }
 

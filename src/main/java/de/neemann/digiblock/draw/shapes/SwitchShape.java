@@ -63,15 +63,13 @@ public class SwitchShape implements Shape {
     }
 
     @Override
-    public InteractorInterface applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public InteractorInterface applyStateMonitor(IOState ioState) {
         return new Interactor() {
             @Override
-            public boolean clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
+            public void clicked(CircuitComponent cc, Point pos, IOState ioState, Element element, SyncAccess modelSync) {
                 closed = !closed;
-                if (ioState != null) {
-                    modelSync.access(() -> ((Switch) element).setClosed(closed));
-                }
-                return true;
+                if (ioState != null)
+                    modelSync.modify(() -> ((Switch) element).setClosed(closed));
             }
         };
     }

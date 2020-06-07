@@ -5,6 +5,7 @@
  */
 package de.neemann.digiblock.draw.library;
 
+import de.neemann.digiblock.core.basic.Not;
 import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.ElementTypeDescription;
 import de.neemann.digiblock.core.element.Keys;
@@ -306,8 +307,8 @@ public class LibraryNode implements Iterable<LibraryNode> {
         // set the wide shape option to the element
         try {
             if (Settings.getInstance().get(Keys.SETTINGS_IEEE_SHAPES)
-                    && getDescription().hasAttribute(Keys.WIDE_SHAPE))
-                // the shape checkbox's default value is false
+                    && getDescription().hasAttribute(Keys.WIDE_SHAPE)
+                    && !visualElement.equalsDescription(Not.DESCRIPTION))
                 visualElement.setAttribute(Keys.WIDE_SHAPE, false);
         } catch (IOException e1) {
             // do nothing on error

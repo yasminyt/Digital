@@ -60,11 +60,8 @@ public class RGBLEDShape implements Shape {
     }
 
     @Override
-    public Interactor applyStateMonitor(IOState ioState, Observer guiObserver) {
+    public Interactor applyStateMonitor(IOState ioState) {
         this.ioState = ioState;
-        ioState.getInput(0).addObserverToValue(guiObserver);
-        ioState.getInput(1).addObserverToValue(guiObserver);
-        ioState.getInput(2).addObserverToValue(guiObserver);
         return null;
     }
 

@@ -110,14 +110,12 @@ public class ModelEntry {
 
     /**
      * Connects this model to the gui.
-     *
-     * @param guiObserver the observer which could be notified if the a repaint is necessary
      */
-    public void connectToGui(Observer guiObserver) {
+    public void connectToGui() {
         if (!isNestedElement) {
             if (ioState == null)
                 throw new RuntimeException("call applyInputs before connectToGui");
-            visualElement.setState(ioState, guiObserver);
+            visualElement.setState(ioState);
         }
     }
 
