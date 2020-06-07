@@ -6,17 +6,17 @@
 	<xsl:param name="images"><xsl:value-of select="/root/@images"/><xsl:value-of select="/root/@lang"/>/</xsl:param>
 
 	<xsl:template match="root">
-		<fo:root font-family="SansSerif" font-size="11pt" xml:lang="{@lang}">
+		<fo:root font-family="{@fontFamily}" font-size="11pt" xml:lang="{@lang}">
 			<fo:layout-master-set>
 				<fo:simple-page-master master-name="DIN-A4"
 									   page-height="29.7cm" page-width="21cm"
-									   margin-top="2cm"     margin-bottom="1cm"
-									   margin-left="2.5cm"  margin-right="2.5cm">
+									   margin-top="2cm" margin-bottom="1cm"
+									   margin-left="2.5cm" margin-right="2.5cm">
 					<fo:region-body
 							margin-top="1.3cm" margin-bottom="1.8cm"
-							margin-left="0cm"  margin-right="0cm"/>
+							margin-left="0cm" margin-right="0cm"/>
 					<fo:region-before region-name="header" extent="1.3cm"/>
-					<fo:region-after  region-name="footer" extent="1.5cm"/>
+					<fo:region-after region-name="footer" extent="1.5cm"/>
 					<fo:region-start  region-name="left"   extent="0cm"/>
 					<fo:region-end    region-name="right"  extent="0cm"/>
 				</fo:simple-page-master>
@@ -215,14 +215,22 @@
 	</xsl:template>
 
 	<xsl:template match="e">
-		<fo:inline font-style="italic"><xsl:apply-templates/></fo:inline>
+		<fo:inline font-style="italic">
+			<xsl:apply-templates/>
+		</fo:inline>
+	</xsl:template>
+
+	<xsl:template match="code">
+		<fo:block font-family="Courier" text-align="left">
+			<xsl:apply-templates/>
+		</fo:block>
 	</xsl:template>
 
 	<xsl:template match="arrow">
 		<fo:inline padding-left="2pt" font-family="ZapfDingbats">&#x2192;</fo:inline>
 	</xsl:template>
 
-    <xsl:template match="faq" mode="full">
+	<xsl:template match="faq" mode="full">
 		<fo:block keep-together.within-page="always">
 			<fo:block font-weight="bold" margin-top="3mm" margin-bottom="1mm">
 				<xsl:apply-templates select="question"/>
