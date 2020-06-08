@@ -6,6 +6,7 @@
 package de.neemann.digiblock.integration;
 
 import de.neemann.digiblock.draw.elements.Circuit;
+import de.neemann.digiblock.gui.FileHistory;
 import de.neemann.digiblock.gui.Main;
 import junit.framework.Assert;
 

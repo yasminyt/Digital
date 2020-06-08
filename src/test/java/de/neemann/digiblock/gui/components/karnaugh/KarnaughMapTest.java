@@ -5,10 +5,7 @@
  */
 package de.neemann.digiblock.gui.components.karnaugh;
 
-import de.neemann.digiblock.analyse.expression.Constant;
-import de.neemann.digiblock.analyse.expression.Expression;
-import de.neemann.digiblock.analyse.expression.ExpressionException;
-import de.neemann.digiblock.analyse.expression.Variable;
+import de.neemann.digiblock.analyse.expression.*;
 import de.neemann.digiblock.analyse.parser.ParseException;
 import de.neemann.digiblock.analyse.parser.Parser;
 import de.neemann.digiblock.analyse.quinemc.BoolTableBoolArray;

@@ -5,6 +5,7 @@
  */
 package de.neemann.digiblock.gui.components.terminal;
 
+import de.neemann.digiblock.core.SyncAccess;
 import de.neemann.digiblock.lang.Lang;
 
 import javax.swing.*;

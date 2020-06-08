@@ -5,10 +5,7 @@
  */
 package de.neemann.digiblock.draw.shapes;
 
-import de.neemann.digiblock.core.Model;
-import de.neemann.digiblock.core.NodeException;
-import de.neemann.digiblock.core.Observer;
-import de.neemann.digiblock.core.SyncAccess;
+import de.neemann.digiblock.core.*;
 import de.neemann.digiblock.core.element.*;
 import de.neemann.digiblock.core.memory.DataField;
 import de.neemann.digiblock.core.memory.RAMInterface;

@@ -15,7 +15,7 @@ import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.Keys;
 import de.neemann.digiblock.core.io.Button;
 import de.neemann.digiblock.core.io.*;
-import de.neemann.digiblock.core.memory.Register;
+import de.neemann.digiblock.core.memory.ProgramCounter;
 import de.neemann.digiblock.core.stats.Statistics;
 import de.neemann.digiblock.core.wiring.AsyncSeq;
 import de.neemann.digiblock.core.wiring.Clock;

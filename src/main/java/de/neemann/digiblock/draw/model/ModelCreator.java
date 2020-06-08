@@ -8,7 +8,6 @@ package de.neemann.digiblock.draw.model;
 import de.neemann.digiblock.core.Model;
 import de.neemann.digiblock.core.Node;
 import de.neemann.digiblock.core.NodeException;
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.element.*;
 import de.neemann.digiblock.core.io.In;
 import de.neemann.digiblock.core.io.Out;

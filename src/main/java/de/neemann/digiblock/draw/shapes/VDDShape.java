@@ -11,10 +11,7 @@ import de.neemann.digiblock.core.element.PinDescriptions;
 import de.neemann.digiblock.draw.elements.IOState;
 import de.neemann.digiblock.draw.elements.Pin;
 import de.neemann.digiblock.draw.elements.Pins;
-import de.neemann.digiblock.draw.graphics.Graphic;
-import de.neemann.digiblock.draw.graphics.Polygon;
-import de.neemann.digiblock.draw.graphics.Style;
-import de.neemann.digiblock.draw.graphics.Vector;
+import de.neemann.digiblock.draw.graphics.*;
 
 import static de.neemann.digiblock.draw.shapes.GenericShape.SIZE;
 import static de.neemann.digiblock.draw.shapes.GenericShape.SIZE2;

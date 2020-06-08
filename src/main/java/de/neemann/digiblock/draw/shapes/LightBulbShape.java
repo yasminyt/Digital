@@ -15,6 +15,7 @@ import de.neemann.digiblock.draw.elements.IOState;
 import de.neemann.digiblock.draw.elements.Pin;
 import de.neemann.digiblock.draw.elements.Pins;
 import de.neemann.digiblock.draw.graphics.Graphic;
+import de.neemann.digiblock.draw.graphics.Orientation;
 import de.neemann.digiblock.draw.graphics.Style;
 import de.neemann.digiblock.draw.graphics.Vector;
 
