@@ -51,7 +51,7 @@
   <string name="btn_loadSvg_tt">导入 SVG 文件。如果需要创建 SVG 文件，最好的方式时首先创建 SVG 模板，然后进行编辑。</string>
   <string name="msg_warning">警告</string>
   <string name="cancel">取消</string>
-  <string name="digital">Digital</string>
+  <string name="digital">Digiblock</string>
   <string name="expression">表达式</string>
   <string name="elem_Help_inputs">输入</string>
   <string name="elem_Help_outputs">输出</string>

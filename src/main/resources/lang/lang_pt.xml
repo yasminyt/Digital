@@ -51,7 +51,7 @@
   <string name="btn_loadSvg_tt">Importar arquivo SVG. Para criar arquivo SVG adequado, é mais fácil criar o modelo SVG primeiro, e depois editá-lo.</string>
   <string name="msg_warning">Aviso</string>
   <string name="cancel">Cancelar</string>
-  <string name="digital">Digital</string>
+  <string name="digital">Digiblock</string>
   <string name="expression">Expressão</string>
   <string name="elem_Help_inputs">Entradas</string>
   <string name="elem_Help_outputs">Saídas</string>
@@ -193,7 +193,7 @@
   <string name="elem_SixteenSeg_pin_dp">Essa entrada controlará o ponto decimal.</string>
   <string name="elem_LedMatrix">Matriz de LEDs</string>
   <string name="elem_LedMatrix_tt">A matrixz de LEDs. Os LEDs serão exibidos em uma janela em separado.
-        Os LEDs de uma coluna do display serão controlados por uma palavra de controle. Em outra entrada, a coluna corrente será 
+        Os LEDs de uma coluna do display serão controlados por uma palavra de controle. Em outra entrada, a coluna corrente será
         selecionada. Dessa forma um display multiplexado será obtido.
         Os LEDs são capazes de se manter acesos indefinidamente durante a simulação para evitar que o display fique piscando.</string>
   <string name="elem_LedMatrix_pin_r-data">A fileira de LEDs de uma coluna.
@@ -272,7 +272,7 @@
   <string name="elem_Splitter_pin_out">Os bits de saída {0}.</string>
   <string name="elem_Splitter_pin_out_one">O bit de saída {0}.</string>
   <string name="elem_BusSplitter">Distribuidor bidirecional</string>
-  <string name="elem_BusSplitter_tt">Poderá ser usado para barramento de dados e simplificará especialmente a construção de 
+  <string name="elem_BusSplitter_tt">Poderá ser usado para barramento de dados e simplificará especialmente a construção de
         módulos de memória em um pacote DIL, assim com a implementação desse tipo de barramento.</string>
   <string name="elem_BusSplitter_pin_OE">Quando definido, o valor no terminal de dados comum D será a saída para os bits
         D[i], se não, os bits D[i] terão como saída o valor D comum.</string>
@@ -495,8 +495,8 @@
   <string name="elem_EEPROM_pin_OE">Se essa entrada estiver em nível alto, o valor armazenado estará disponível na saída.</string>
   <string name="elem_GraphicCard">RAM gráfica</string>
   <string name="elem_GraphicCard_short">Gr-RAM</string>
-  <string name="elem_GraphicCard_tt">Usada para exibir gráficos bitmap. Tem comportamento semelhante a de uma. Além disso, 
-        exibirá seu conteúdo em ua janela gráfica. Cada pixel será representado por um endereço de memória. O valor armazenado definirá 
+  <string name="elem_GraphicCard_tt">Usada para exibir gráficos bitmap. Tem comportamento semelhante a de uma. Além disso,
+        exibirá seu conteúdo em ua janela gráfica. Cada pixel será representado por um endereço de memória. O valor armazenado definirá
         a cor do pixel, a partir de uma paleta de cores fixa. Haverá dois buffers de tela implementados para dar suporte à mudança de páginas.
         A entrada B selecionará o buffer a ser exibido. Assim, o tamanho total da memória será dx * dy * 2 palavras.</string>
   <string name="elem_GraphicCard_pin_A">Endereço onde ler ou gravar.</string>
@@ -547,7 +547,7 @@
   <string name="elem_CounterPreset_tt">Contador com valor que poderá ser pré-estabelecido. Além disso, o valor máximo e a direção de contagem também poderão ser especificados.</string>
   <string name="elem_CounterPreset_short">Contador</string>
   <string name="elem_CounterPreset_pin_out">Retornará o valor contado.</string>
-  <string name="elem_CounterPreset_pin_ovf">Saída de transbordamento (overflow output). Se estiver em 1, e a entrada en estiver em 1 e se o 
+  <string name="elem_CounterPreset_pin_ovf">Saída de transbordamento (overflow output). Se estiver em 1, e a entrada en estiver em 1 e se o
     contador alcançar seu valor máximo quando estiver sendo incrementado, ou quando atingir 0 ao ser decrementado.</string>
   <string name="elem_CounterPreset_pin_C">A entrada de clock. Quando da borda de subida, incrementará o contador.</string>
   <string name="elem_CounterPreset_pin_clr">Limpeza síncrona do contador se igual a 1.</string>
@@ -638,7 +638,7 @@
   <string name="elem_DiodeForward_pin_in">Se a entrada estiver em nível alto, a saída também estará. Em todos os outros casos, a saída estará estado de alta impedância.</string>
   <string name="elem_DiodeForward_pin_out">Se a entrada estiver em nível alto, a saída também estará. Em todos os outros casos, a saída estará estado de alta impedância.</string>
   <string name="elem_DiodeBackward">Diode para Terra</string>
-  <string name="elem_DiodeBackward_tt">Simples diodo unidirecional, usado para levar uma conexão para VDD. 
+  <string name="elem_DiodeBackward_tt">Simples diodo unidirecional, usado para levar uma conexão para VDD.
         É usada para implementar uma AND de fios.
         Para isso é necessário conectar um resistor de pull up à saída do diodo.
         Se a entrada estiver em nível baixo, a saída também estará. Em todos os outros casos (entrada em nível baixo ou em alta impedância) a saída estará estado de alta impedância.
@@ -730,7 +730,7 @@
   <string name="elem_Break_pin_brk">Irá suspender uma simulação rapidamente se uma borda de subida for detectada.</string>
   <string name="elem_Break_tt">Se esse componente for usado em um circuito, o botão "Run To Break" entre "Start" e "Stop"
         estará habilitado. Esse botão irá o clock para o circuito até uma borda de subida na entrada do componente
-        ser detectada. Esse elemento poderá ser usado para depuração ao prover o clock ao circuito em qualquer 
+        ser detectada. Esse elemento poderá ser usado para depuração ao prover o clock ao circuito em qualquer
         ponto de parada (breakpoint).
         Poderá ser usado também para implementar uma instrução BRK em linguagem de montagem (assembly).
         Será possível simular um processador e interromper sua execução quando a instrução BRK for alcançada.
@@ -940,7 +940,7 @@
   <string name="key_InDefault_tt">Valor definido para o circuito quando for ligado. "Z" significa alta impedância.</string>
   <string name="key_isHighZ">Entrada tri-state</string>
   <!-- In, Splitter -->
-  <string name="key_isHighZ_tt">Se definido, permite-se que a entrada esteja em alta impedância. Em um componente de entrada, 
+  <string name="key_isHighZ_tt">Se definido, permite-se que a entrada esteja em alta impedância. Em um componente de entrada,
         isso também será permitido, se ("Z") estiver definido como valor padrão.</string>
   <string name="key_avoidActiveLow">Nenhuma saída em zero.</string>
   <string name="key_avoidActiveLow_tt">Evitar saída em zero. Isso será útil especialmente quando forem definidos circuitos com relés .
@@ -1109,7 +1109,7 @@
   <string name="key_lockedMode_tt">O circuito está bloqueado. É possível configurar diodos e FGF-FETs.</string>
   <string name="key_pinNumber">Número do pino</string>
   <!-- Out, In, Clock -->
-  <string name="key_pinNumber_tt">Número desse pino. Usado para a representação de um circuito com encapsulamento DIL e 
+  <string name="key_pinNumber_tt">Número desse pino. Usado para a representação de um circuito com encapsulamento DIL e
         quando a a atribuição ao pino for usada na programação de um CPLD.
         Se houver vários bits, todos os números de pinos poderão ser especificados por uma lista, separados por vírgulas.</string>
   <string name="key_pinCount">Número de pinos DIL</string>
@@ -1508,7 +1508,7 @@
         biblioteca.
         Se houver um arquivo 7400.dig na pasta de trabalho, não poderá ser usado ou buscado em biblioteca,
         porque esse nome de arquivo não poderá mais ser usado.</string>
-  <string name="msg_duplicateLibraryFiles">Há vários arquivos com nomes idênticos, os quais não poderão ser usados 
+  <string name="msg_duplicateLibraryFiles">Há vários arquivos com nomes idênticos, os quais não poderão ser usados
         de forma exclusiva! Nessa condição estão:</string>
   <string name="msg_and_N_More">e {0} mais.</string>
   <string name="msg_fileNotImportedYet">O arquivo ainda não foi importado.</string>
@@ -1516,7 +1516,7 @@
   <string name="msg_test_missingLines">(Entradas demais!)</string>
   <string name="msg_test_missingLines_tt">Todos os testes foram executados, mas nem todos os resultados mostrados.
         A avaliação dos resultados de testes, no entando, é considerada correta!</string>
-  <string name="msg_isLocked">A edição do circuito está suspensa. O bloqueio poderá ser removido em 
+  <string name="msg_isLocked">A edição do circuito está suspensa. O bloqueio poderá ser removido em
         "{0} -&gt; {1} -&gt; {2}".
         Entretanto, copiar componentes e a configuração de diodos e FG-FETs será possível pelo uso da tecla [P] mesmo durante o bloqueio.</string>
   <string name="msg_speedTestError">Erro durante o teste de velocidade!</string>
@@ -1606,7 +1606,7 @@
         <h3>Função</h3>
         Nesse local, portanto, os conteúdos poderão ser definidos para todas as ROM's no circuito.
         Quando o modelo de simulação for gerado, cada ROM será inicializada com os conteúdos armazenados
-        diretamente na respectiva ROM. Em seguida será verificado se há um conteúdo alternativo 
+        diretamente na respectiva ROM. Em seguida será verificado se há um conteúdo alternativo
         definido aqui. Se esse for o caso, o conteúdo definido aqui será carregado na respectiva ROM.
         <h3>Uso</h3>
         Deve-se notar que cada ROM irá requerer um nome único usado como identificação.
@@ -1642,7 +1642,7 @@
 <p>A primeira linha deverá conter os nomes das entradas e das saídas.
 As linhas seguintes deverão conter os valores esperados.
 Um 'X' representará um "don't care", e um 'Z' representará um valor em alta impedância.
-Se um 'C' for usado,  inicialmente, todos os outros valores serão definidos, e após um ciclo de clock 
+Se um 'C' for usado,  inicialmente, todos os outros valores serão definidos, e após um ciclo de clock
 seus valores serão comparados. Dessa forma será mais fácil testar lógica sequencial.
 Um linha que for iniciada por um sinal ('#') será um comentário.</p>
 
@@ -1834,7 +1834,7 @@ Portanto, o sinal 'D_out' também será avaliado para se verificar o valor desse
 
         Primeiro, inserir uma entrada no circuito. Essa entrada poderá ser encontrada no menu Componentes ▸IO.</string>
   <string name="tutorial2">Depois, acrescentar uma segunda entrada ao circuito. Também se poderá clicar na entrada na barra de ferramentas.
-    
+
         É melhor colocar a segunda entrada ligeiramente abaixo da primeira.
         O circuito poderá ser movido mediante manter pressionado o botão direito do mouse.
         Ao clicar nos componentes, esses poderão ser movidos.</string>
@@ -1844,13 +1844,13 @@ Portanto, o sinal 'D_out' também será avaliado para se verificar o valor desse
   <string name="tutorial4">O último componente a ser inserido será a saída.
         Posicionar esse componente um pouco mais distante, à direita da porta "OU-Exclusivo".</string>
   <string name="tutorial5">Para completar o circuito, fios para conexões deverão ser traçados.
-    
+
          Clicar no pont vermelho da primeira entrada e conectá-lo à entrada da porta "OU-Exclusivo",
          e em seguida, clicar no ponto azul dessa porta.
          NÃO arrastar o botão com o botão do mouse pressionado.</string>
   <string name="tutorial6">Conectar o ponto vermelho na segunda entrada ao segundo ponto azul da porta "OU-Exclusivo"
         e o ponto vermelho dessa porta ao botão azul da saída.
-        
+
         Durante o traçado, será possível ancorar o fio em qualquer ponto da área de trabalho bastando clicar nela.
         Se o botão direito do mouse for clicado, isso cancelará o traçado do fio (control-click no MacOS).</string>
   <string name="tutorial7">O primeiro circuito estará então funcional.
@@ -1859,7 +1859,7 @@ Portanto, o sinal 'D_out' também será avaliado para se verificar o valor desse
   <string name="tutorial8">A simulação estará ativa. Para alterar as entradas, clicar nas mesmas.</string>
   <string name="tutorial9">Para parar a simulação, clicar no botão Stop na barra de ferramentas.</string>
   <string name="tutorial10">Para completar, as entradas e as saídas deverão ser rotuladas.
-    
+
          Ao pressionar o botão da direita sobre uma entrada, uma caixa de diálogo se abrirá. No MacOs, usar control-click.
          A entrada poderá, então, receber um nome.</string>
   <string name="tutorial11">Rotular todas as entradas e as saídas.</string>

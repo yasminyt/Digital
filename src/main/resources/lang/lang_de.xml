@@ -52,7 +52,7 @@
         am einfachsten zunächst ein Template zu erzeugen und dieses dann zu bearbeiten.</string>
     <string name="msg_warning">Warnung</string>
     <string name="cancel">Abbrechen</string>
-    <string name="digital">Digital</string>
+    <string name="digital">Digiblock</string>
     <string name="expression">Ausdruck</string>
     <string name="elem_Help_inputs">Eingänge</string>
     <string name="elem_Help_outputs">Ausgänge</string>
