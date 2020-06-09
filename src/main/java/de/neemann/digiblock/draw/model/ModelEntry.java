@@ -8,7 +8,6 @@ package de.neemann.digiblock.draw.model;
 import de.neemann.digiblock.core.NodeException;
 import de.neemann.digiblock.core.ObservableValue;
 import de.neemann.digiblock.core.ObservableValues;
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.element.Element;
 import de.neemann.digiblock.core.element.Keys;
 import de.neemann.digiblock.core.element.PinDescription;

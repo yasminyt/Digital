@@ -5,13 +5,12 @@
  */
 package de.neemann.digiblock.draw.shapes;
 
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.PinDescriptions;
 import de.neemann.digiblock.draw.elements.IOState;
 import de.neemann.digiblock.draw.elements.Pins;
-import de.neemann.digiblock.draw.graphics.*;
 import de.neemann.digiblock.draw.graphics.Polygon;
+import de.neemann.digiblock.draw.graphics.*;
 
 import java.awt.*;
 

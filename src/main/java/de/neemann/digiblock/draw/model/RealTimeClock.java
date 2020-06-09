@@ -8,7 +8,6 @@ package de.neemann.digiblock.draw.model;
 import de.neemann.digiblock.core.*;
 import de.neemann.digiblock.core.wiring.Clock;
 import de.neemann.digiblock.gui.ErrorStopper;
-import de.neemann.digiblock.gui.GuiModelObserver;
 import de.neemann.digiblock.gui.StatusInterface;
 import de.neemann.digiblock.lang.Lang;
 import org.slf4j.Logger;

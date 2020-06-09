@@ -1671,4 +1671,14 @@ Therefore, the signal 'D_out' is also available to check the value in this case.
   <string name="err_evaluatingGenericsCode_N_N">Error in the evaluation of the generic code of the circuit. Code
       {1}
       at Component: {0}</string>
+
+  <string name="lib_ip">IP核</string>
+  <string name="lib_lattice">Lattice</string>
+  <string name="lib_machXO2">MachXO2</string>
+
+  <string name="menu_assembly">汇编器</string>
+  <string name="menu_RARS_tt">RISC-V 架构指令的集成器和运行模拟器</string>
+  <string name="menu_testBench">TestBench</string>
+  <string name="menu_testBench_create">blocklyTB</string>
+  <string name="menu_testBench_create_tt">在浏览器中使用 blocklyTB 设计 testbench。</string>
 </resources>

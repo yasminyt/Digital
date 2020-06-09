@@ -6,7 +6,6 @@
 package de.neemann.digiblock.draw.shapes;
 
 import de.neemann.digiblock.core.Model;
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.Signal;
 import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.Keys;

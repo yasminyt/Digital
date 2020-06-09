@@ -5,8 +5,10 @@
  */
 package de.neemann.digiblock.gui.components;
 
-import de.neemann.digiblock.core.*;
-import de.neemann.digiblock.core.Observer;
+import de.neemann.digiblock.core.Bits;
+import de.neemann.digiblock.core.NodeException;
+import de.neemann.digiblock.core.ObservableValue;
+import de.neemann.digiblock.core.SyncAccess;
 import de.neemann.digiblock.core.element.*;
 import de.neemann.digiblock.core.io.Const;
 import de.neemann.digiblock.core.io.In;

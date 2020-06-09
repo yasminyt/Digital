@@ -5,7 +5,6 @@
  */
 package de.neemann.digiblock.draw.shapes;
 
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.draw.elements.IOState;
 import de.neemann.digiblock.draw.elements.Pin;
 import de.neemann.digiblock.draw.elements.Pins;

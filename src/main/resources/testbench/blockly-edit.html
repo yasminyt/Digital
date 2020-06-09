@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blockly Testbench</title>
+
+  <link href="static/css/blockly-edit.css" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/prism.css">
+
+  <script src="js/prism.js"></script>
+
+  <script src="blocks/core/blockly_compressed.js"></script>
+  <script src="blocks/core/blocks_compressed.js"></script>
+  <script src="static/msg/js/en.js"></script>
+
+  <script src="blocks/rewrite/createVariablesButtonHandler.js"></script>
+  <script src="blocks/rewrite/customExtensions.js"></script>
+
+  <!-- blocks -->
+  <script src="blocks/initial/init.js"></script>
+  <script src="blocks/values.js"></script>
+  <script src="blocks/numbers.js"></script>
+  <script src="blocks/variables_dynamic/core.js" type="module"></script>
+  <script src="blocks/variables_dynamic/variables.js" type="module"></script>
+  <script src="blocks/behavior.js"></script>
+  <script src="blocks/assignment.js"></script>
+  <script src="blocks/timing.js"></script>
+  <script src="blocks/operators.js"></script>
+  <script src="blocks/logic.js"></script>
+  <script src="blocks/loops.js"></script>
+  <script src="blocks/math.js"></script>
+  <script src="blocks/task/core.js" type="module"></script>
+  <script src="blocks/task/task.js" type="module"></script>
+  <script src="blocks/functions.js"></script>
+  <script src="blocks/module.js"></script>
+
+  <!-- generators -->
+  <script src="generator/verilog.js"></script>
+  <script src="generator/verilog/initBlocks.js" type="module"></script>
+  <script src="generator/verilog/values.js"></script>
+  <script src="generator/verilog/numbers.js"></script>
+  <script src="generator/verilog/variables.js"></script>
+  <script src="generator/verilog/behavior.js"></script>
+  <script src="generator/verilog/assignment.js"></script>
+  <script src="generator/verilog/timing.js"></script>
+  <script src="generator/verilog/logic.js"></script>
+  <script src="generator/verilog/loops.js"></script>
+  <script src="generator/verilog/math.js"></script>
+  <script src="generator/verilog/operators.js"></script>
+  <script src="generator/verilog/task.js"></script>
+  <script src="generator/verilog/functions.js"></script>
+  <script src="generator/verilog/module.js"></script>
+
+</head>
+<body>
+  <div class="app-container">
+    <div id="blocklyDiv" class="main blockly-panel"></div>
+
+    <div id="codeDiv" class="main output-panel">
+      <h3>Code View</h3>
+      <div id="codeArea"></div>
+      <button class="saveButton">
+        <img src="static/img/save.png" alt="保存到本地">
+      </button>
+    </div>
+  </div>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Module" colour="345">
+      <block type="timescale"></block>
+      <block type="end_module"></block>
+<!--      <block type="text_join"></block>-->
+    </category>
+    <sep gap="40"></sep>
+    <category name="Values" colour="260">
+      <block type="zero"></block>
+      <block type="one"></block>
+      <block type="high_impedance"></block>
+      <block type="uncertainty"></block>
+      <block type="text"></block>
+      <block type="range"></block>
+      <block type="lists_create_with">
+        <mutation items="2"></mutation>
+      </block>
+      <block type="repeat_concat">
+        <value name="concatenation">
+          <block type="lists_create_with">
+            <mutation items="2"></mutation>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="Numbers" colour="280">
+      <block type="math_number"></block>
+      <block type="constants"></block>
+      <block type="decimal_change"></block>
+    </category>
+    <category name="Variables" colour="330" custom="variable_dynamic"></category>
+    <sep gap="40"></sep>
+    <category name="Logic" colour="210">
+      <block type="controls_if"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_ternary"></block>
+      <category name="Bitwise">
+        <block type="bitwise_negate"></block>
+        <block type="bitwise"></block>
+      </category>
+    </category>
+    <category name="Loops" colour="120">
+      <block type="forever_loop"></block>
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="while_loop"></block>
+      <block type="for_loop">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="Math" colour="75">
+      <block type="arithmetic"></block>
+      <block type="random"></block>
+    </category>
+    <sep gap="40"></sep>
+    <category name="Behavior" colour="240">
+      <block type="begin_end"></block>
+      <block type="fork_join"></block>
+      <block type="initial_blocks"></block>
+      <block type="always_at">
+        <value name="condition">
+          <shadow type="asterisk">
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="Assignment" colour="20">
+      <block type="block_assign"></block>
+      <block type="none_block_assign"></block>
+      <block type="assign"></block>
+      <block type="block_assign_output"></block>
+      <block type="none_block_assign_output"></block>
+    </category>
+    <category name="Timing" colour="195">
+      <block type="delay_single">
+        <value name="time">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="delay">
+        <value name="time">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="delay_output">
+        <value name="time">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="timing_at"></block>
+      <block type="timing_wait"></block>
+    </category>
+    <category name="Operators" colour="225">
+      <block type="bit_select"></block>
+      <block type="pos_edge"></block>
+      <block type="neg_edge"></block>
+      <block type="concatenation">
+        <value name="expressions">
+          <shadow type="lists_create_with">
+            <mutation items="2"></mutation>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <sep gap="40"></sep>
+    <category name="Task" colour="180" custom="create_task"></category>
+    <category name="Functions" colour="0">
+      <block type="time_sys"></block>
+      <block type="write_sys"></block>
+      <block type="display_sys"></block>
+      <block type="monitor_sys">
+        <value name="variables">
+          <block type="lists_create_with">
+            <mutation items="2"></mutation>
+          </block>
+        </value>
+      </block>
+      <block type="finish_sys"></block>
+      <block type="stop_sys"></block>
+      <category name="File I/O">
+        <block type="fopen"></block>
+        <block type="fclose"></block>
+        <block type="readmemb"></block>
+        <block type="readmemh"></block>
+        <block type="fdisplay"></block>
+        <block type="fmonitor"></block>
+      </category>
+    </category>
+    <sep gap="120"></sep>
+    <category name="Save/Back" colour="190">
+      <button text="Save workspace in local" callbackKey="saveWorkspace" ></button>
+      <button text="Back to index page" callbackKey="back2index" ></button>
+    </category>
+  </xml>
+
+  <script src="js/inject.js" type="module"></script>
+  <script src="js/downloadCode.js"></script>
+
+  <script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+      'remove-trailing': true,
+      'remove-indent': true,
+      'left-trim': true,
+      'right-trim': true,
+      // 'break-lines': 40,
+      'tabs-to-spaces': 1,
+    });
+  </script>
+
+</body>
+</html>

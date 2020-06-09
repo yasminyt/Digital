@@ -5,7 +5,6 @@
  */
 package de.neemann.digiblock.draw.shapes;
 
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.SyncAccess;
 import de.neemann.digiblock.core.element.Element;
 import de.neemann.digiblock.core.element.ElementAttributes;

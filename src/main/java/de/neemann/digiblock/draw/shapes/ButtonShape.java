@@ -5,7 +5,6 @@
  */
 package de.neemann.digiblock.draw.shapes;
 
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.SyncAccess;
 import de.neemann.digiblock.core.element.Element;
 import de.neemann.digiblock.core.element.ElementAttributes;
@@ -14,8 +13,8 @@ import de.neemann.digiblock.core.io.Button;
 import de.neemann.digiblock.draw.elements.IOState;
 import de.neemann.digiblock.draw.elements.Pin;
 import de.neemann.digiblock.draw.elements.Pins;
-import de.neemann.digiblock.draw.graphics.*;
 import de.neemann.digiblock.draw.graphics.Polygon;
+import de.neemann.digiblock.draw.graphics.*;
 import de.neemann.digiblock.gui.components.CircuitComponent;
 
 import java.awt.*;

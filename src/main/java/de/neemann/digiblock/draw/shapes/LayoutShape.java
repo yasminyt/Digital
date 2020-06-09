@@ -6,7 +6,6 @@
 package de.neemann.digiblock.draw.shapes;
 
 import de.neemann.digiblock.core.NodeException;
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.Keys;
 import de.neemann.digiblock.core.element.PinDescription;
@@ -14,8 +13,8 @@ import de.neemann.digiblock.core.io.In;
 import de.neemann.digiblock.core.io.Out;
 import de.neemann.digiblock.core.wiring.Clock;
 import de.neemann.digiblock.draw.elements.*;
-import de.neemann.digiblock.draw.graphics.*;
 import de.neemann.digiblock.draw.graphics.Polygon;
+import de.neemann.digiblock.draw.graphics.*;
 import de.neemann.digiblock.draw.library.ElementTypeDescriptionCustom;
 import de.neemann.digiblock.lang.Lang;
 

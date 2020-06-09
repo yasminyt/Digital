@@ -77,8 +77,6 @@ import java.net.JarURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -274,10 +272,11 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Path target = Paths.get("java.io.tmpdir");
-                    loadRecourseFromJarByFolder("/testbench", target.toFile().getAbsolutePath());
-                    target.toFile().deleteOnExit();
-                    URI uri = target.resolve("testbench/index.html").toUri();
+//                    Path target = Paths.get("java.io.tmpdir");
+//                    loadRecourseFromJarByFolder("/testbench", target.toFile().getAbsolutePath());
+//                    target.toFile().deleteOnExit();
+//                    URI uri = target.resolve("testbench/index.html").toUri();
+                    URI uri = new URI("https://yasminyt.github.io/blocklyTB/");
                     Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
                     if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE))
                         desktop.browse(uri);

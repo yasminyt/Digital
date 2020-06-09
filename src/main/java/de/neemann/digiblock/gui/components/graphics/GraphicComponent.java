@@ -75,7 +75,15 @@ public class GraphicComponent extends JComponent {
     }
 
     private static Color[] createPalette() {
-        Color[] col = new Color[0x10000];
+//        Color[] col = new Color[0x10000];
+        Color[] col = new Color[255];
+        for (int g = 0; g < col.length; g++) {      // 0-254灰度值
+            int in = 255 - getComp(g, 255);
+            col[g] = new Color(in, in, in);
+        }
+
+        /**
+         * 舍弃原调色板
         for (int i = 0; i < col.length; i++)
             col[i] = Color.BLACK;
         col[0] = Color.WHITE;
@@ -109,6 +117,7 @@ public class GraphicComponent extends JComponent {
                     col[index] = new Color(getComp(r, 32), getComp(g, 32), getComp(b, 32));
                     index++;
                 }
+         **/
 
         return col;
     }

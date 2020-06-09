@@ -5,7 +5,6 @@
  */
 package de.neemann.digiblock.draw.shapes;
 
-import de.neemann.digiblock.core.Observer;
 import de.neemann.digiblock.core.element.ElementAttributes;
 import de.neemann.digiblock.core.element.PinDescriptions;
 import de.neemann.digiblock.core.switching.TransGate;
