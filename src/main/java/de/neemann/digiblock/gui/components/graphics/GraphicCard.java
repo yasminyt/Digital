@@ -9,10 +9,7 @@ import de.neemann.digiblock.core.Node;
 import de.neemann.digiblock.core.NodeException;
 import de.neemann.digiblock.core.ObservableValue;
 import de.neemann.digiblock.core.ObservableValues;
-import de.neemann.digiblock.core.element.Element;
-import de.neemann.digiblock.core.element.ElementAttributes;
-import de.neemann.digiblock.core.element.ElementTypeDescription;
-import de.neemann.digiblock.core.element.Keys;
+import de.neemann.digiblock.core.element.*;
 import de.neemann.digiblock.core.memory.DataField;
 import de.neemann.digiblock.core.memory.RAMInterface;
 
@@ -43,12 +40,14 @@ public class GraphicCard extends Node implements Element, RAMInterface {
             .addAttribute(Keys.BITS)
             .addAttribute(Keys.LABEL)
             .addAttribute(Keys.GRAPHIC_WIDTH)
-            .addAttribute(Keys.GRAPHIC_HEIGHT);
+            .addAttribute(Keys.GRAPHIC_HEIGHT)
+            .addAttribute(Keys.GRAPHIC_RGB);
 
     private final DataField memory;
     private final int width;
     private final int height;
     private final int bankSize;
+    private final boolean rgb;
 
     private GraphicDialog graphicDialog;
     private final int size;
@@ -79,6 +78,7 @@ public class GraphicCard extends Node implements Element, RAMInterface {
         bankSize = width * height;
         bits = attr.get(Keys.BITS);
         size = bankSize * 2;
+        rgb = attr.get(Keys.GRAPHIC_RGB);
 
         int aBits = 1;
         while (((1 << aBits) < size)) aBits++;
@@ -159,7 +159,7 @@ public class GraphicCard extends Node implements Element, RAMInterface {
         if (paintPending.compareAndSet(false, true)) {
             SwingUtilities.invokeLater(() -> {
                 if (graphicDialog == null || !graphicDialog.isVisible()) {
-                    graphicDialog = new GraphicDialog(getModel().getWindowPosManager().getMainFrame(), width, height);
+                    graphicDialog = new GraphicDialog(getModel().getWindowPosManager().getMainFrame(), width, height, rgb);
                     getModel().getWindowPosManager().register("GraphicCard_" + label, graphicDialog);
                 }
                 paintPending.set(false);

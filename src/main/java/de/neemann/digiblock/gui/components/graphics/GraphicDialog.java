@@ -23,12 +23,13 @@ public class GraphicDialog extends JDialog {
      * @param parent the parent window
      * @param width  width in pixel
      * @param height height in pixel
+     * @param rgb rgb mode
      */
-    public GraphicDialog(Window parent, int width, int height) {
+    public GraphicDialog(Window parent, int width, int height, boolean rgb) {
         super(parent, Lang.get("elem_GraphicCard"), ModalityType.MODELESS);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        graphicComponent = new GraphicComponent(width, height);
+        graphicComponent = new GraphicComponent(width, height, rgb);
         getContentPane().add(graphicComponent);
         pack();
 

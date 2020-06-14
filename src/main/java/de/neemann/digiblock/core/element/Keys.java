@@ -507,6 +507,13 @@ public final class Keys {
             .setMin(4);
 
     /**
+     * set the RGB mode
+     */
+    public static final Key<Boolean> GRAPHIC_RGB
+            = new Key<>("RGB", false)
+            .setName("RGB");
+
+    /**
      * flag used by a relay to indicate if it is normally open or normally closed.
      */
     public static final Key<Boolean> RELAY_NORMALLY_CLOSED
