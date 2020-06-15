@@ -1,7 +1,13 @@
+/*
+ * Color extension
+ */
 package de.neemann.digiblock.gui.ext;
 
 import java.awt.*;
 
+/**
+ * Custom Color class
+ */
 public class CustomColor extends Color {
     int value;
     /**

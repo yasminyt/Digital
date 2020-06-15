@@ -14,7 +14,7 @@ import java.awt.*;
  * The component to show the graphics.
  */
 public class GraphicComponent extends JComponent {
-    private static Color[] PALETTE = createGrayPalette();
+    private static Color[] PALETTE;
 
     private final int width;
     private final int height;
@@ -37,6 +37,8 @@ public class GraphicComponent extends JComponent {
 
         if (rgb)
             PALETTE = createRGBPalette();
+        else
+            PALETTE = createGrayPalette();
 
         int pw = 640 / width;
         if (pw < 2) pw = 2;
@@ -66,16 +68,23 @@ public class GraphicComponent extends JComponent {
     }
 
     private long[] trans(long[] data) {
+        final int TOTAL = 256;
         long[][] myData = new long[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int p = (int) data[offs + j * width + i];;
+                int p = (int) data[offs + j * width + i];
                 if (rgb) {
-                    int value = colorMap(p);
+                    int a = p % TOTAL;
+                    int tmp = p / TOTAL;
+                    int b = tmp % TOTAL;
+                    int c = tmp / TOTAL;
+                    a = a / 4;
+                    b = b / 4;
+                    c = c / 4;
+                    int value = a + b * 64 + c * 64 * 64;
                     if (value >= PALETTE.length) value = 1;
                     myData[i][height - j - 1] = value;
-                }
-                else {
+                } else {
                     if (p >= PALETTE.length) p = 1;
                     myData[i][height - j - 1] = p;
                 }
@@ -98,15 +107,8 @@ public class GraphicComponent extends JComponent {
                 int dx = (x + 1) * getWidth() / width - xPos;
                 for (int y = 0; y < height; y++) {
                     int p = (int) data[offs + y * width + x];
-                    if (rgb) {
-                        int value = colorMap(p);
-                        if (value >= PALETTE.length) value = 1;
-                        g.setColor(PALETTE[value]);
-                    }
-                    else {
-                        if (p >= PALETTE.length) p = 1;
+                    if (p >= PALETTE.length) p = 1;
                         g.setColor(PALETTE[p]);
-                    }
 
                     int ypos = y * getHeight() / height;
                     int dy = (y + 1) * getHeight() / height - ypos;
@@ -114,19 +116,6 @@ public class GraphicComponent extends JComponent {
                     g.fillRect(xPos, ypos, dx, dy);
                 }
             }
-    }
-
-    private static int colorMap(int p) {
-        final int TOTAL = 256;
-        int a = p % TOTAL;
-        int tmp = p / TOTAL;
-        int b = tmp % TOTAL;
-        int c = tmp / TOTAL;
-        a = a / 4;
-        b = b / 4;
-        c = c / 4;
-        int value = a + b * 64 + c * 64 * 64;
-        return value;
     }
 
     private static Color[] createGrayPalette() {
