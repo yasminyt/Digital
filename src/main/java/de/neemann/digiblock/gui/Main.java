@@ -194,7 +194,7 @@ public final class Main extends JFrame implements ClosingWindowListener.ConfirmS
             rarsTempFile = File.createTempFile("rars", ".jar");
             rarsTempFile.deleteOnExit();
             try (FileOutputStream out = new FileOutputStream(rarsTempFile);
-                InputStream in = ClassLoader.getSystemResourceAsStream("rars1_3_1.jar")) {
+                InputStream in = ClassLoader.getSystemResourceAsStream("rars_009e1ab.jar")) {
                 if (in != null)
                     IOUtils.copy(in, out);
             }
